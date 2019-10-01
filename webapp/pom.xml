@@ -5,14 +5,14 @@
 
 	<parent>
 		<groupId>org.incode</groupId>
-		<artifactId>message-relay-parent</artifactId>
+		<artifactId>message-relay</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-    <artifactId>message-relay</artifactId>
+    <artifactId>message-relay-webapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>message-relay</name>
-	<description>Message Relay for Incode Platform's Outbox implementation of PublisherService.</description>
+    <name>Message Relay Webapp</name>
+	<description>Webapp component of a Message Relay for Incode Platform's Outbox implementation of PublisherService.</description>
 
 	<dependencies>
 		<!-- logging -->

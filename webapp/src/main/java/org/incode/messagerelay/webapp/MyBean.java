@@ -1,4 +1,4 @@
-package com.baeldung.camel;
+package org.incode.messagerelay.webapp;
 
 public class MyBean {
     private Integer id;

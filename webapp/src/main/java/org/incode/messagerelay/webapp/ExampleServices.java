@@ -1,4 +1,4 @@
-package com.baeldung.camel;
+package org.incode.messagerelay.webapp;
 
 /**
  * a Mock class to show how some other layer
