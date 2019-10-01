@@ -6,7 +6,7 @@ This module contains articles about Spring Boot with Apache Camel
 
 To start, run:
 
-`mvn spring-boot:run`
+`mvn -pl webapp spring-boot:run`
 	
 Then, make a POST http request to:
 
