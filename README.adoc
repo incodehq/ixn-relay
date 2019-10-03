@@ -1,49 +1,57 @@
 = Spring Boot Camel
 
-This module contains articles about Spring Boot with Apache Camel
+Based on: link:https://github.com/apache/camel/tree/camel-2.24.2/examples/camel-example-spring-boot-activemq[]
 
-== Example for the Article on Camel API with SpringBoot
 
-To start, run:
+== Prereqs
+
+From Apache ActiveMQ you can download the broker as a .zip or .tar.gz file.
+
+Unzip/tar the archive, and start a terminal.
+
+Change directory to the unzipped directory and start the broker.
+
+[source,bash]
+----
+bin/activemq console
+----
+
+Which runs the broker in the foreground and logs to the console, using the configuration in `conf`.
+
+Log on using: link:http://localhost:8161[]
+
+The user/password is defined in `conf/user.properties` (ie, admin/admin)
+
+
+[TIP]
+====
+To control the ActiveMQ broker, use a _different_ shell and use `status`, `help`, start` and `stop`, eg:
+
+[source,bash]
+----
+bin/activemq help
+----
+====
+
+
+== How to run the example
+
+Configure Camel to connect to remote broker:
+
+[source,yaml]
+.application.yaml
+----
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+----
+
+Run using:
 
 [source,bash]
 ----
 mvn -pl webapp spring-boot:run
 ----
 
-Then, make a POST http request to:
 
-* link:http://localhost:8080/camel/api/bean[]]
-
-Include the HEADER:
-
-* Content-Type: `application/json`
-
-and a BODY Payload like:
-
-[source,json]
-----
-{
-  "id":  1,
-  "name":  "World"
-}
-----
-
-We will get a return code of 201 and the response: `Hello, World` - if the transform() method from Application class is uncommented and the process() method is commented
-
-or return code of 201 and the response:
-
-[source,json]
-----
-{
-  "id":  1,
-  "name": "Hi there, World"
-}
-----
-
-if the transform() method from Application class is commented and the process() method is uncommented.
-
-
-== Relevant articles:
-
-* http://www.baeldung.com/apache-camel-spring-boot[Apache Camel with Spring Boot]
+This will automatically create a `foo` queue, and the keep emitting a log message once per second (the default for `timer` bean).
