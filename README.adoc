@@ -53,5 +53,9 @@ Run using:
 mvn -pl webapp spring-boot:run
 ----
 
+[NOTE]
+====
+If ApacheMQ broker is not running, then Camel just quits immediately.
+====
 
 This will automatically create a `foo` queue, and the keep emitting a log message once per second (the default for `timer` bean).

@@ -7,11 +7,11 @@
         <artifactId>message-relay</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>message-relay-spi</artifactId>
+    <artifactId>message-relay-config</artifactId>
 
     <packaging>jar</packaging>
 
-    <name>Message Relay ActiveMQ SPI Definition</name>
+    <name>Message Relay Configuration</name>
     <description>
         Defines an SPI to propagate the retrieved message.
     </description>
@@ -20,6 +20,10 @@
         <dependency>
             <groupId>org.apache.isis.core</groupId>
             <artifactId>isis-core-schema</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
         </dependency>
     </dependencies>
 
