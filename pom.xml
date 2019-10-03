@@ -15,37 +15,12 @@
 	<description>Message Relay for Incode Platform's Outbox implementation of PublisherService.</description>
 
 	<properties>
-		<spring-boot-starter.version>1.5.4.RELEASE</spring-boot-starter.version>
-		<camel.version>2.19.1</camel.version>
 
-		<junit.version>4.12</junit.version>
-		<org.hamcrest.version>1.3</org.hamcrest.version>
-		<mockito.version>2.21.0</mockito.version>
-
-		<!-- logging -->
-		<org.slf4j.version>1.7.21</org.slf4j.version>
-		<logback.version>1.1.7</logback.version>
-
-		<!-- plugins -->
-		<!-- can't upgrade the plugin yet; as there is an issue with 2.22 no longer running all the tests-->
-		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
-		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-
-		<java.version>1.8</java.version>
-		<log4j.version>1.2.17</log4j.version>
-
-		<junit-platform.version>1.2.0</junit-platform.version>
-		<junit-jupiter.version>5.2.0</junit-jupiter.version>
-
-		<maven-install-plugin.version>2.5.1</maven-install-plugin.version>
-		<h2.version>1.4.197</h2.version>
-		<lombok.version>1.16.12</lombok.version>
+		<incode-platform.version>1.17.0.20191003-1233-47ac5d22</incode-platform.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<spring-boot.version>2.1.8.RELEASE</spring-boot.version>
 	</properties>
 
 	<dependencyManagement>
@@ -65,126 +40,66 @@
 				<artifactId>message-relay-webapp</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
-
-			<!-- logging -->
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${org.slf4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-core</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${org.slf4j.version}</version>
+				<groupId>org.isisaddons.module.publishmq</groupId>
+				<artifactId>isis-module-publishmq-dom-outboxclient</artifactId>
+				<version>${incode-platform.version}</version>
 			</dependency>
 
-			<!-- test -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-engine</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-params</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-api</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-core</artifactId>
-				<version>${org.hamcrest.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-library</artifactId>
-				<version>${org.hamcrest.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-all</artifactId>
-				<version>${org.hamcrest.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
-				<version>${mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.maven.surefire</groupId>
-				<artifactId>surefire-logger-api</artifactId>
-				<version>${maven-surefire-plugin.version}</version>
-				<!-- to get around bug https://github.com/junit-team/junit5/issues/801 -->
-				<scope>test</scope>
-				<optional>true</optional>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-servlet-starter</artifactId>
-				<version>${camel.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-jackson-starter</artifactId>
-				<version>${camel.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-swagger-java-starter</artifactId>
-				<version>${camel.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-spring-boot-starter</artifactId>
-				<version>${camel.version}</version>
-			</dependency>
+			<!-- Spring Boot BOM -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-web</artifactId>
-				<version>${spring-boot-starter.version}</version>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
+
+			<!-- Camel BOM -->
 			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-test</artifactId>
-				<version>${spring-boot-starter.version}</version>
-				<scope>test</scope>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-spring-boot-dependencies</artifactId>
+				<version>2.24.2</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 		</dependencies>
+
 	</dependencyManagement>
 
 	<modules>
-		<module>canonical</module>
 		<module>spi</module>
 		<module>spi-mq</module>
 		<module>webapp</module>
 	</modules>
 
+	<profiles>
+		<profile>
+			<id>repo-incode-work</id>
+			<activation>
+				<property>
+					<name>!skip.repo-incode-work</name>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>repo-incode-work</id>
+					<url>https://repo.incode.work</url>
+					<name>repo.incode.work</name>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+						<updatePolicy>always</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
+					</snapshots>
+					<layout>default</layout>
+				</repository>
+			</repositories>
+		</profile>
 
+	</profiles>
 </project>
