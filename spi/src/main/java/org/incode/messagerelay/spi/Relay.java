@@ -1,5 +1,7 @@
 package org.incode.messagerelay.spi;
 
+import org.apache.isis.schema.ixn.v1.InteractionDto;
+
 public interface Relay {
-    RelayStatus handle(String interactionDtoXml);
+    RelayStatus handle(InteractionDto interactionDto);
 }

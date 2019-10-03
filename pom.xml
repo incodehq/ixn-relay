@@ -108,11 +108,6 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.incode.message-relay</groupId>
-				<artifactId>message-relay-config</artifactId>
-				<version>${revision}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.incode.message-relay</groupId>
 				<artifactId>message-relay-spi</artifactId>
 				<version>${revision}</version>
 			</dependency>
@@ -183,7 +178,6 @@
 	</dependencies>
 
 	<modules>
-		<module>config</module>
 		<module>spi</module>
 		<module>spi-mq</module>
 		<module>webapp</module>

@@ -10,16 +10,16 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.springframework.stereotype.Component;
+
 import com.google.common.collect.MapMaker;
 import com.google.common.io.Resources;
 
-public class JaxbUtil {
+@Component
+public class JaxbService {
     private static Map<Class<?>, JAXBContext> jaxbContextByClass = (new MapMaker()).concurrencyLevel(10).makeMap();
 
-    private JaxbUtil() {
-    }
-
-    public static <T> T fromXml(Reader reader, Class<T> dtoClass) {
+    public <T> T fromXml(Reader reader, Class<T> dtoClass) {
         Unmarshaller un = null;
 
         try {
@@ -30,19 +30,19 @@ public class JaxbUtil {
         }
     }
 
-    public static <T> T fromXml(Class<?> contextClass, String resourceName, Charset charset, Class<T> dtoClass) throws IOException {
+    public <T> T fromXml(Class<?> contextClass, String resourceName, Charset charset, Class<T> dtoClass) throws IOException {
         URL url = Resources.getResource(contextClass, resourceName);
         String s = Resources.toString(url, charset);
         return fromXml(new StringReader(s), dtoClass);
     }
 
-    public static <T> String toXml(T dto) {
+    public <T> String toXml(T dto) {
         CharArrayWriter caw = new CharArrayWriter();
         toXml(dto, caw);
         return caw.toString();
     }
 
-    public static <T> void toXml(T dto, Writer writer) {
+    public <T> void toXml(T dto, Writer writer) {
         Marshaller m = null;
 
         try {
@@ -55,7 +55,7 @@ public class JaxbUtil {
         }
     }
 
-    public static <T> JAXBContext jaxbContextFor(Class<T> dtoClass) {
+    public <T> JAXBContext jaxbContextFor(Class<T> dtoClass) {
         JAXBContext jaxbContext = (JAXBContext)jaxbContextByClass.get(dtoClass);
         if (jaxbContext == null) {
             try {

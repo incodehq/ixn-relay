@@ -7,9 +7,7 @@ import java.time.temporal.ChronoUnit;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.convert.DurationUnit;
-import org.springframework.context.annotation.Primary;
 
-@Primary
 @ConfigurationProperties("app")
 @Data
 public class AppConfig {
@@ -21,15 +19,18 @@ public class AppConfig {
 
     @Data
     public static class OutboxClient {
+        /**
+         * The base URL of the webapp that hosts the <tt>OutboxEventsService</tt> REST API.
+         */
         private String base = "http://localhost:8080/restful/";
+        /**
+         * The user name to invoke the {@link #getBase() REST API}
+         */
         private String username = "sven";
+        /**
+         * The corresponding password for the {@link #getUsername() user}.
+         */
         private String password = "pass";
-    }
-
-    private final RelayMq relayMq = new RelayMq();
-    @Data
-    public static class RelayMq {
-        private String queueName = "memberInteractionsQueue";
     }
 
 }

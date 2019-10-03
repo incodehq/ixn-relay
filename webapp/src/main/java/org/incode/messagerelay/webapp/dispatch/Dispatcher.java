@@ -10,7 +10,6 @@ import org.apache.isis.schema.ixn.v1.InteractionDto;
 import org.incode.messagerelay.spi.Relay;
 import org.incode.messagerelay.spi.RelayStatus;
 import org.incode.messagerelay.config.AppConfig;
-import org.incode.messagerelay.spi.mq.impl.JaxbUtil;
 import org.isisaddons.module.publishmq.dom.outboxclient.OutboxClient;
 import org.springframework.stereotype.Component;
 
@@ -20,12 +19,14 @@ public class Dispatcher {
     private final AppConfig appConfig;
     private final List<Relay> relays;
 
-    private OutboxClient outboxClient;
-
-    public Dispatcher(AppConfig appConfig, List<Relay> relays) {
+    public Dispatcher(
+            final AppConfig appConfig,
+            final List<Relay> relays) {
         this.appConfig = appConfig;
         this.relays = relays;
     }
+
+    private OutboxClient outboxClient;
 
     @PostConstruct
     public void init() {
@@ -37,29 +38,28 @@ public class Dispatcher {
         outboxClient.init();
     }
 
-    int i=0;
-    // only consume when the predicate matches, eg when the message body is lower than 100
-    @Consume(uri = "direct:tick")
+    @Consume(uri = "direct:poll")
     public void poll() {
-        System.out.println("Tick " + (++i));
-
         final List<InteractionDto> interactions = outboxClient.pending();
+        interactions.forEach(this::dispatchToAllThenDelete);
+    }
 
-        interactions.
-                forEach(interactionDto -> {
-
-                    String xml = JaxbUtil.toXml(interactionDto);
-                    // pass interaction onto all downstream relays.
-            // only if all succeed do we remove the interaction from upstream.
-            final Optional<RelayStatus> anyFailed =
-                    relays.stream()
-                            .map(relay -> relay.handle(xml))
-                            .filter(x -> x == RelayStatus.FAILED)
-                            .findAny();
-            if (!anyFailed.isPresent()) {
-                outboxClient.delete(interactionDto.getTransactionId(), interactionDto.getExecution().getSequence());
-            }
-        });
+    /**
+     * Pass interaction onto all downstream relays.
+     *
+     * <p>
+     *   Only if all succeed do we remove the interaction from upstream.
+     * </p>
+     */
+    private void dispatchToAllThenDelete(InteractionDto interactionDto) {
+        final Optional<RelayStatus> anyFailed =
+                relays.stream()
+                        .map(relay -> relay.handle(interactionDto))
+                        .filter(x -> x == RelayStatus.FAILED)
+                        .findAny();
+        if (!anyFailed.isPresent()) {
+            outboxClient.delete(interactionDto.getTransactionId(), interactionDto.getExecution().getSequence());
+        }
     }
 
 }

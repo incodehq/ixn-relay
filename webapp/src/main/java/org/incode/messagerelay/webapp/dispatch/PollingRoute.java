@@ -8,18 +8,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class PollingRoute extends RouteBuilder {
 
+    final AppConfig appConfig;
 
-    @Autowired
-    AppConfig appConfig;
+    public PollingRoute(final AppConfig appConfig) {
+        this.appConfig = appConfig;
+    }
 
     @Override
-    public void configure() throws Exception {
-
-        from(String.format(
-                "timer:poll?period=%ds",
-                appConfig.getPollingPeriod().getSeconds())
-            )
-            .to("direct:tick"); // consumed by Processor
+    public void configure() {
+        from("timer:poll?period={{app.polling-period}}")
+            .to("direct:poll");
     }
 
 }
