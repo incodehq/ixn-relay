@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 ADD ${docker-plugin.resource.include} app.jar
 ADD entrypoint.sh /
