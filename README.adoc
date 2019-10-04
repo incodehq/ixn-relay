@@ -13,30 +13,27 @@ Change directory to the unzipped directory and start the broker.
 
 [source,bash]
 ----
-bin/activemq console
+bin/activemq start
 ----
 
 Which runs the broker in the foreground and logs to the console, using the configuration in `conf`.
 
 Log on using: link:http://localhost:8161[]
 
-The user/password is defined in `conf/user.properties` (ie, admin/admin)
+The user/password is defined in `conf/user.properties` (ie, `admin`/`admin`)
 
 
-[TIP]
-====
-To control the ActiveMQ broker, use a _different_ shell and use `status`, `help`, start` and `stop`, eg:
+To control the ActiveMQ broker, use `status`, `help`, `start` and `stop`, eg;
 
 [source,bash]
 ----
-bin/activemq help
+bin/activemq status
 ----
-====
 
 
 == How to run the example
 
-Configure Camel to connect to remote broker:
+Camel is already configured to connect to a remote broker:
 
 [source,yaml]
 .application.yaml
@@ -55,7 +52,6 @@ mvn -pl webapp spring-boot:run
 
 [NOTE]
 ====
-If ApacheMQ broker is not running, then Camel just quits immediately.
+If ApacheMQ broker is not running, then Camel will keep retrying.
+That's because the `camel.springboot.main-run-controller` is set to `true`.
 ====
-
-This will automatically create a `foo` queue, and the keep emitting a log message once per second (the default for `timer` bean).
