@@ -1,7 +1,7 @@
 package org.incode.messagerelay.webapp;
 
 import org.incode.messagerelay.spi.mq.RelayMqModule;
-import org.incode.messagerelay.config.AppConfig;
+import org.incode.messagerelay.webapp.config.AppConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

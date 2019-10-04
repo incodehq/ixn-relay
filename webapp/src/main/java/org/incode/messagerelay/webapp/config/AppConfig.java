@@ -1,4 +1,4 @@
-package org.incode.messagerelay.config;
+package org.incode.messagerelay.webapp.config;
 
 import lombok.Data;
 

@@ -9,7 +9,7 @@ import org.apache.camel.Consume;
 import org.apache.isis.schema.ixn.v1.InteractionDto;
 import org.incode.messagerelay.spi.Relay;
 import org.incode.messagerelay.spi.RelayStatus;
-import org.incode.messagerelay.config.AppConfig;
+import org.incode.messagerelay.webapp.config.AppConfig;
 import org.isisaddons.module.publishmq.dom.outboxclient.OutboxClient;
 import org.springframework.stereotype.Component;
 

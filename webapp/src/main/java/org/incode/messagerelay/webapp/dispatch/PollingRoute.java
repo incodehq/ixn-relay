@@ -1,8 +1,7 @@
 package org.incode.messagerelay.webapp.dispatch;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.incode.messagerelay.config.AppConfig;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.incode.messagerelay.webapp.config.AppConfig;
 import org.springframework.stereotype.Component;
 
 @Component
