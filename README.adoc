@@ -31,65 +31,49 @@ ir -.r-> mb
 The relay doesn't access the Apache Isis database directly, instead it uses the `OutboxClient` that is provided by the https://platform.incode.org[Incode Platform].
 The Apache Isis app in turn uses the `OutboxEventService` component (also part of the https://platform.incode.org[Incode Platform]).
 
-[plantuml]
-----
-component "Apache Isis\nApp" {
-
-    [OutboxEventService] <<incode platform>>
-}
-
-component "ixn-relay" {
-    [OutboxClient] <<incode platform>>
-    [relay logic]
-}
-
-database DB {
-
-}
-
-[OutboxEventService] .u-> DB
-[OutboxClient] .r-> [OutboxEventService] : http GET
-[relay logic] -u.> [OutboxClient]
-----
-
 The diagram below sketches the main classes:
 
 [plantuml]
 ----
 hide empty members
 
-package spi {
-    interface Relay {
-        handle()
+component "ixn-relay" {
+    package spi {
+        interface Relay {
+            handle()
+        }
     }
-}
 
-package relay-mq {
+    package relay-mq {
 
-    class RelayMq implements Relay {
+        class RelayMq implements Relay {
+        }
     }
-}
 
-package webapp {
+    package webapp {
 
-    class PollingRoute {
-    }
-    class Dispatcher {
-    }
-    class OutboxClient <<incode platform>> {
+        class PollingRoute {
+        }
+        class Dispatcher {
+        }
+        class OutboxClient <<incode platform>> {
+        }
     }
 }
 
 component ActiveMQ {
 }
 
-component "Apache Isis\nApplication" <<rest>> {
+component "Apache Isis\nApp" {
+    class "OutboxEventService" <<incode platform>> {
+    }
 }
+
+OutboxClient .l-> OutboxEventService : "http GET"
 
 PollingRoute .d-> Dispatcher
 Dispatcher -> "0..*" Relay
 Dispatcher -d-> OutboxClient
-OutboxClient .l-> "Apache Isis\nApplication"
 
 RelayMq .r-> ActiveMQ : JMS send
 ----
