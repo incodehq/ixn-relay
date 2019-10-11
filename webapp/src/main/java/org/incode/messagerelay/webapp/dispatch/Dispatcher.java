@@ -57,7 +57,8 @@ public class Dispatcher {
                         .map(relay -> relay.handle(interactionDto))
                         .filter(x -> x == RelayStatus.FAILED)
                         .findAny();
-        if (!anyFailed.isPresent()) {
+        final boolean noneFailed = !anyFailed.isPresent();
+        if (noneFailed) {
             outboxClient.delete(interactionDto.getTransactionId(), interactionDto.getExecution().getSequence());
         }
     }
