@@ -1,15 +1,105 @@
-= Message Relay
+= Interaction Relay
 :toc:
 
 This microservice is a companion to the link:http://platform.incode.org[Incode Platform]'s link:https://github.com/incodehq/incode-platform/tree/master/modules/spi/publishmq[publishmq] module, an implementation of Apache Isis' `PublisherService` SPI.
+Its job is to relay link:http://isis.apache.org/schema/ixn/ixn.xsd[interaction] messages from the "outbox" of an link:https://isis.apache.org[Apache Isis] application to a target message broker:
 
-Its job is to relay events (of type link:http://isis.apache.org/schema/ixn/ixn.xsd[ixn.xsd]) from an "outbox" to a target message broker:
-
-* the "outbox" is the the `OutboxEvent` table in the Apache Isis database
+* the "outbox" is the `OutboxEvent` table in the Apache Isis database
 
 * the message broker is ActiveMQ, though the architecture is pluggable so other broker implementations could also be supported.
 
 When messages have been successfully relayed, they are removed from the outbox.
+
+It can be used in conjunction with the link:https://github.com/incodehq/ixn-relay[incodehq/ixn-subscriber] to publish messages from an Apache Isis application to an integration webapp (eg implemented using https://camel.apache.org[Apache Camel]), but without either the Apache Isis app nor the integration app having knowledge of the other.
+
+[plantuml]
+----
+[ixn-relay] as ir
+[Apache Isis\nApp] as app
+[Integration\nApp] as ia
+[ActiveMQ] as mb
+[ixn-subscriber] as is
+
+app <-d. ir
+is -.r-> ia
+mb .d-> is
+ir -.r-> mb
+----
+
+== Design
+
+The relay doesn't access the Apache Isis database directly, instead it uses the `OutboxClient` that is provided by the https://platform.incode.org[Incode Platform].
+The Apache Isis app in turn uses the `OutboxEventService` component (also part of the https://platform.incode.org[Incode Platform]).
+
+[plantuml]
+----
+component "Apache Isis\nApp" {
+
+    [OutboxEventService] <<incode platform>>
+}
+
+component "ixn-relay" {
+    [OutboxClient] <<incode platform>>
+    [relay logic]
+}
+
+database DB {
+
+}
+
+[OutboxEventService] .u-> DB
+[OutboxClient] .r-> [OutboxEventService] : http GET
+[relay logic] -u.> [OutboxClient]
+----
+
+The diagram below sketches the main classes:
+
+[plantuml]
+----
+hide empty members
+
+package spi {
+    interface Relay {
+        handle()
+    }
+}
+
+package relay-mq {
+
+    class RelayMq implements Relay {
+    }
+}
+
+package webapp {
+
+    class PollingRoute {
+    }
+    class Dispatcher {
+    }
+    class OutboxClient <<incode platform>> {
+    }
+}
+
+component ActiveMQ {
+}
+
+component "Apache Isis\nApplication" <<rest>> {
+}
+
+PollingRoute .d-> Dispatcher
+Dispatcher -> "0..*" Relay
+Dispatcher -d-> OutboxClient
+OutboxClient .l-> "Apache Isis\nApplication"
+
+RelayMq .r-> ActiveMQ : JMS send
+----
+
+The `PollingRoute` is responsible for kicking off the `Dispatcher` periodically, which uses the `OutboxClient` to check if there are any messages in the outbox.
+
+If so, the `Dispatcher` loops over all available `Relay` implementations.
+
+Finally, the `RelayMq` implementation posts the interaction to the specified ActiveMQ JMS queue.
+
 
 
 == Configuration

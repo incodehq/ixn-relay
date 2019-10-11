@@ -1,4 +1,4 @@
-package org.incode.messagerelay.spi.mq;
+package org.incode.messagerelay.spi.mq.config;
 
 import lombok.Data;
 

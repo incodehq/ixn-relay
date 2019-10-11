@@ -4,18 +4,18 @@
     <modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.incode.message-relay</groupId>
-		<artifactId>message-relay</artifactId>
+		<groupId>org.incode.ixn-relay</groupId>
+		<artifactId>ixn-relay</artifactId>
 		<version>${revision}</version>
 	</parent>
 
-    <artifactId>message-relay-webapp</artifactId>
-    <name>Message Relay Webapp</name>
-	<description>Webapp component of a Message Relay for Incode Platform's Outbox implementation of PublisherService.</description>
+    <artifactId>ixn-relay-webapp</artifactId>
+    <name>Interaction Relay Webapp</name>
+	<description>Webapp component of a Interaction Relay for Incode Platform's Outbox implementation of PublisherService.</description>
 
 	<properties>
 
-		<docker-plugin.imageName>incodehq/message-relay</docker-plugin.imageName>
+		<docker-plugin.imageName>incodehq/ixn-relay</docker-plugin.imageName>
 		<docker-plugin.resource.include>${project.artifactId}-${project.version}.jar</docker-plugin.resource.include>
 		<docker-plugin.serverId>docker-hub</docker-plugin.serverId>
 		<docker-plugin.registryUrl>https://index.docker.io/v1/</docker-plugin.registryUrl>
@@ -120,8 +120,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.incode.message-relay</groupId>
-			<artifactId>message-relay-spi-mq</artifactId>
+			<groupId>org.incode.ixn-relay</groupId>
+			<artifactId>ixn-relay-spi-mq</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -1,5 +1,6 @@
 package org.incode.messagerelay.spi.mq;
 
+import org.incode.messagerelay.spi.mq.config.RelayMqConfig;
 import org.incode.messagerelay.spi.mq.impl.JaxbService;
 import org.incode.messagerelay.spi.mq.impl.RelayMq;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

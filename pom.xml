@@ -11,15 +11,15 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.incode.message-relay</groupId>
-    <artifactId>message-relay</artifactId>
+    <groupId>org.incode.ixn-relay</groupId>
+    <artifactId>ixn-relay</artifactId>
     <version>${revision}</version>
 
-    <name>Message Relay (Parent)</name>
+    <name>Interaction Relay (Parent)</name>
 
 	<packaging>pom</packaging>
 
-	<description>Message Relay for Incode Platform's Outbox implementation of PublisherService.</description>
+	<description>Interaction Relay for Incode Platform's Outbox implementation of PublisherService.</description>
 
 	<properties>
 
@@ -107,18 +107,18 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.incode.message-relay</groupId>
-				<artifactId>message-relay-spi</artifactId>
+				<groupId>org.incode.ixn-relay</groupId>
+				<artifactId>ixn-relay-spi</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.incode.message-relay</groupId>
-				<artifactId>message-relay-spi-mq</artifactId>
+				<groupId>org.incode.ixn-relay</groupId>
+				<artifactId>ixn-relay-spi-mq</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.incode</groupId>
-				<artifactId>message-relay-webapp</artifactId>
+				<artifactId>ixn-relay-webapp</artifactId>
 				<version>${revision}</version>
 			</dependency>
 

@@ -3,15 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.incode.message-relay</groupId>
-        <artifactId>message-relay</artifactId>
+        <groupId>org.incode.ixn-relay</groupId>
+        <artifactId>ixn-relay</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>message-relay-spi</artifactId>
+    <artifactId>ixn-relay-spi</artifactId>
 
     <packaging>jar</packaging>
 
-    <name>Message Relay ActiveMQ SPI Definition</name>
+    <name>Interaction Relay ActiveMQ SPI Definition</name>
     <description>
         Defines an SPI to propagate the retrieved message.
     </description>
