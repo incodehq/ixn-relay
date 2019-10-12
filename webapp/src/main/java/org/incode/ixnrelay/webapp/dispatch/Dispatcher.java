@@ -1,4 +1,4 @@
-package org.incode.messagerelay.webapp.dispatch;
+package org.incode.ixnrelay.webapp.dispatch;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,9 +7,9 @@ import javax.annotation.PostConstruct;
 
 import org.apache.camel.Consume;
 import org.apache.isis.schema.ixn.v1.InteractionDto;
-import org.incode.messagerelay.spi.Relay;
-import org.incode.messagerelay.spi.RelayStatus;
-import org.incode.messagerelay.webapp.config.AppConfig;
+import org.incode.ixnrelay.spi.Relay;
+import org.incode.ixnrelay.spi.RelayStatus;
+import org.incode.ixnrelay.webapp.config.AppConfig;
 import org.isisaddons.module.publishmq.dom.outboxclient.OutboxClient;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package org.incode.messagerelay.spi;
+package org.incode.ixnrelay.spi;
 
 public enum RelayStatus {
     OK,

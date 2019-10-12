@@ -26,105 +26,6 @@
 
 	</properties>
 
-	<dependencies>
-
-		<dependency>
-			<groupId>org.isisaddons.module.publishmq</groupId>
-			<artifactId>isis-module-publishmq-dom-outboxclient</artifactId>
-		</dependency>
-
-		<!-- activemq -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-activemq</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.activemq</groupId>
-					<artifactId>activemq-broker</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
-		<!-- Camel -->
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-camel</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.activemq</groupId>
-					<artifactId>activemq-broker</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-client</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http-hc</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<!-- test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-test</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-test-spring</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-test</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring-version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.incode.ixn-relay</groupId>
-			<artifactId>ixn-relay-spi-mq</artifactId>
-		</dependency>
-	</dependencies>
-
     <build>
 <!--
         <defaultGoal>spring-boot:run</defaultGoal>
@@ -298,6 +199,106 @@
 
 		</plugins>
 	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.isisaddons.module.publishmq</groupId>
+			<artifactId>isis-module-publishmq-dom-outboxclient</artifactId>
+		</dependency>
+
+		<!-- activemq -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-activemq</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.activemq</groupId>
+					<artifactId>activemq-broker</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- Camel -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-camel</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.activemq</groupId>
+					<artifactId>activemq-broker</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-hc</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-test</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-test-spring</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-test</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.incode.ixn-relay</groupId>
+			<artifactId>ixn-relay-spi-mq</artifactId>
+		</dependency>
+	</dependencies>
+
 
 
 </project>

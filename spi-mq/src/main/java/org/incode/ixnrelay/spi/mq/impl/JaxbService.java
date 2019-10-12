@@ -1,4 +1,4 @@
-package org.incode.messagerelay.spi.mq.impl;
+package org.incode.ixnrelay.spi.mq.impl;
 
 import java.io.*;
 import java.net.URL;

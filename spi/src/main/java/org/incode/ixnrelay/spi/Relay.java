@@ -1,4 +1,4 @@
-package org.incode.messagerelay.spi;
+package org.incode.ixnrelay.spi;
 
 import org.apache.isis.schema.ixn.v1.InteractionDto;
 

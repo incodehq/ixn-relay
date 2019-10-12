@@ -1,8 +1,8 @@
-package org.incode.messagerelay.spi.mq;
+package org.incode.ixnrelay.spi.mq;
 
-import org.incode.messagerelay.spi.mq.config.RelayMqConfig;
-import org.incode.messagerelay.spi.mq.impl.JaxbService;
-import org.incode.messagerelay.spi.mq.impl.RelayMq;
+import org.incode.ixnrelay.spi.mq.config.RelayMqConfig;
+import org.incode.ixnrelay.spi.mq.impl.JaxbService;
+import org.incode.ixnrelay.spi.mq.impl.RelayMq;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

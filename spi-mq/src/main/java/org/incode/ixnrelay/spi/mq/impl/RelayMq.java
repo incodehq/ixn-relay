@@ -1,10 +1,10 @@
-package org.incode.messagerelay.spi.mq.impl;
+package org.incode.ixnrelay.spi.mq.impl;
 
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.apache.isis.schema.ixn.v1.InteractionDto;
-import org.incode.messagerelay.spi.Relay;
-import org.incode.messagerelay.spi.RelayStatus;
+import org.incode.ixnrelay.spi.Relay;
+import org.incode.ixnrelay.spi.RelayStatus;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,4 +1,4 @@
-package org.incode.messagerelay.webapp;
+package org.incode.ixnrelay.webapp;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessageRelayApplication.class)
+@SpringBootTest(classes = InteractionRelayApplication.class)
 public class SpringContextIntegrationTest {
 
     @Test
