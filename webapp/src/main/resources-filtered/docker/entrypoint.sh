@@ -13,7 +13,7 @@ then
 fi
 
 # strip off any prefix
-mv *.application.yml application.yml
+ln -s *.application.yml application.yml
 
 java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
 
