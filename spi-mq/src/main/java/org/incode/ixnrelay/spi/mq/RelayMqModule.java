@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({
         RelayMq.class,
-        RelayMqConfig.class,
         JaxbService.class
 })
 @EnableConfigurationProperties(RelayMqConfig.class)
