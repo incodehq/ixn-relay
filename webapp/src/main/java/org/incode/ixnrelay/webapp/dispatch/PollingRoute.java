@@ -8,29 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class PollingRoute extends RouteBuilder {
 
-    final AppConfig appConfig;
-
-    public PollingRoute(final AppConfig appConfig) {
-        this.appConfig = appConfig;
-    }
-
     @Override
     public void configure() {
-
-        switch (appConfig.getTracing().getTracingType()) {
-            case ZIPKIN:
-                ZipkinTracer zipkin = new ZipkinTracer();
-                AppConfig.Tracing.Zipkin zipkinConfig = appConfig.getTracing().getZipkin();
-                zipkin.setEndpoint(zipkinConfig.getEndpoint());
-                zipkin.setServiceName(zipkinConfig.getServiceName());
-                zipkin.setRate(zipkinConfig.getRate());
-                zipkin.setIncludeMessageBodyStreams(zipkinConfig.isIncludeMessageBodyStreams());
-
-
-                // add zipkin to CamelContext
-                zipkin.init(getContext());
-                break;
-        }
 
         from("timer:poll?period={{app.polling-period}}")
             .to("direct:poll");
