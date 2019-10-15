@@ -25,3 +25,13 @@ app:
       service-name: ixn-relay
       rate: 1.0f
       include-message-body-streams: true
+
+management:
+  endpoint:
+    jolokia:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"

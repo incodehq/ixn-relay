@@ -246,8 +246,24 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.jolokia</groupId>
+			<artifactId>jolokia-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-client</artifactId>
+			<!--
+			seems to be necessary to specify this dependency directly,
+			(even though is transitive dependency of spi-rest).
+			Not doing results in resolving to incorrect version, then
+			unable to find the jax-rs provider)
+			-->
 			<version>${cxf.version}</version>
 		</dependency>
 
@@ -302,6 +318,7 @@
 			<groupId>org.incode.ixn-relay</groupId>
 			<artifactId>ixn-relay-spi-mq</artifactId>
 		</dependency>
+
 	</dependencies>
 
 
