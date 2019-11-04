@@ -1,8 +1,6 @@
 package org.incode.ixnrelay.webapp.dispatch;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.zipkin.ZipkinTracer;
-import org.incode.ixnrelay.webapp.config.AppConfig;
 import org.springframework.stereotype.Component;
 
 @Component
